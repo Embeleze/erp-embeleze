@@ -1,15 +1,1 @@
-{
-  "short_name": "ERP Embeleze",
-  "name": "ERP Embeleze - Sistema de gestão para marketplaces",
-  "icons": [
-    {
-      "src": "favicon.ico",
-      "sizes": "64x64 32x32 24x24 16x16",
-      "type": "image/x-icon"
-    }
-  ],
-  "start_url": ".",
-  "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
-} 
+ 

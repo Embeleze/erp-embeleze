@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './Auth.css';
 
 const Register = ({ setAuth }) => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -21,10 +22,9 @@ const Register = ({ setAuth }) => {
   const onSubmit = async e => {
     e.preventDefault();
     if (password !== password2) {
-      setError('Senhas não conferem');
+      setError('As senhas não coincidem');
       return;
     }
-
     try {
       const res = await axios.post('/api/auth/register', {
         name,
@@ -33,22 +33,22 @@ const Register = ({ setAuth }) => {
       });
       localStorage.setItem('token', res.data.token);
       setAuth(true);
+      navigate('/dashboard');
     } catch (err) {
-      setError(err.response.data.msg || 'Erro ao registrar usuário');
+      setError('Erro ao registrar usuário');
     }
   };
 
   return (
     <div className="auth-container">
       <div className="auth-box">
-        <h1>ERP Embeleze</h1>
         <h2>Registro</h2>
-        {error && <div className="alert alert-danger">{error}</div>}
+        {error && <div className="error-message">{error}</div>}
         <form onSubmit={onSubmit}>
           <div className="form-group">
+            <label>Nome:</label>
             <input
               type="text"
-              placeholder="Nome"
               name="name"
               value={name}
               onChange={onChange}
@@ -56,9 +56,9 @@ const Register = ({ setAuth }) => {
             />
           </div>
           <div className="form-group">
+            <label>Email:</label>
             <input
               type="email"
-              placeholder="Email"
               name="email"
               value={email}
               onChange={onChange}
@@ -66,25 +66,23 @@ const Register = ({ setAuth }) => {
             />
           </div>
           <div className="form-group">
+            <label>Senha:</label>
             <input
               type="password"
-              placeholder="Senha"
               name="password"
               value={password}
               onChange={onChange}
               required
-              minLength="6"
             />
           </div>
           <div className="form-group">
+            <label>Confirmar Senha:</label>
             <input
               type="password"
-              placeholder="Confirmar Senha"
               name="password2"
               value={password2}
               onChange={onChange}
               required
-              minLength="6"
             />
           </div>
           <button type="submit" className="btn btn-primary">
@@ -92,7 +90,7 @@ const Register = ({ setAuth }) => {
           </button>
         </form>
         <p>
-          Já tem uma conta? <Link to="/login">Login</Link>
+          Já tem uma conta? <Link to="/login">Faça login</Link>
         </p>
       </div>
     </div>

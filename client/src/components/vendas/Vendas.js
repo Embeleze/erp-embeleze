@@ -172,12 +172,22 @@ const Vendas = () => {
       <h2>Selecione o Marketplace</h2>
       <div className="marketplace-cards">
         <div className="marketplace-card shopee" onClick={() => setCurrentView('shopee')}>
-          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Shopee_logo.svg/2560px-Shopee_logo.svg.png" alt="Shopee" className="marketplace-logo" />
-          <h3>Shopee</h3>
+          <div className="card-logo">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Shopee_logo.svg/2560px-Shopee_logo.svg.png" alt="Shopee" />
+          </div>
+          <div className="card-content">
+            <h3>Shopee</h3>
+            <p>Gerenciar vendas na Shopee</p>
+          </div>
         </div>
         <div className="marketplace-card mercadolivre" onClick={() => setCurrentView('mercadolivre')}>
-          <img src="https://http2.mlstatic.com/frontend-assets/ml-web-navigation/ui-navigation/5.21.3/mercadolibre/logo__large_plus.png" alt="Mercado Livre" className="marketplace-logo" />
-          <h3>Mercado Livre</h3>
+          <div className="card-logo">
+            <img src="https://logodownload.org/wp-content/uploads/2018/10/mercado-livre-logo.png" alt="Mercado Livre" />
+          </div>
+          <div className="card-content">
+            <h3>Mercado Livre</h3>
+            <p>Gerenciar vendas no Mercado Livre</p>
+          </div>
         </div>
       </div>
     </div>

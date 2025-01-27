@@ -99,29 +99,54 @@ header {
 }
 
 .module-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  background: white;
-  border-radius: 12px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  padding: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #f8fafc;
+  padding: 20px;
 }
 
 .module-content {
+  background: white;
+  border-radius: 12px;
+  padding: 40px;
   text-align: center;
-  padding: 2rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  max-width: 500px;
+  width: 100%;
 }
 
 .module-content h2 {
-  font-size: 1.75rem;
   color: #1e293b;
-  margin-bottom: 1rem;
-  font-weight: 600;
+  font-size: 24px;
+  margin-bottom: 16px;
 }
 
 .module-content p {
   color: #64748b;
-  font-size: 1.125rem;
+  font-size: 16px;
+  margin-bottom: 24px;
+}
+
+.btn-voltar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 auto;
+  padding: 12px 24px;
+  background: #2563eb;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-voltar:hover {
+  background: #1d4ed8;
+  transform: translateY(-2px);
 }
 
 .back-link {

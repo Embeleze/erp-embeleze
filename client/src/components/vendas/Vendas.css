@@ -159,17 +159,33 @@ header {
   background: linear-gradient(135deg, #fff5d6 0%, #fff9e6 100%);
 }
 
-.marketplace-logo {
+.card-logo {
   width: 200px;
   height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-logo img {
+  max-width: 100%;
+  max-height: 100%;
   object-fit: contain;
 }
 
-.marketplace-card h3 {
+.card-content {
+  text-align: center;
+}
+
+.card-content h3 {
   font-size: 20px;
-  color: #1e293b;
-  margin: 0;
-  font-weight: 600;
+  margin-bottom: 8px;
+  color: var(--text-color);
+}
+
+.card-content p {
+  color: #64748b;
+  font-size: 14px;
 }
 
 .shopee-welcome {

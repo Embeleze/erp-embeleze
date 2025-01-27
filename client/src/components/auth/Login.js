@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './Auth.css';
 
 const Login = ({ setAuth }) => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     email: '',
     password: ''
@@ -30,10 +31,11 @@ const Login = ({ setAuth }) => {
 
     try {
       console.log('Tentando login com:', formData);
-      const res = await axios.post('https://erp-embeleze-app.onrender.com/api/auth/login', formData);
+      const res = await axios.post('/api/auth/login', formData);
       console.log('Resposta do servidor:', res.data);
       localStorage.setItem('token', res.data.token);
       setAuth(true);
+      navigate('/dashboard');
     } catch (err) {
       console.error('Erro completo:', err);
       if (err.response) {

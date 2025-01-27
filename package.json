@@ -10,9 +10,6 @@
     "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install && cd client && npm install && npm run build",
     "init-db": "node scripts/initDB.js"
   },
-  "engines": {
-    "node": "16.x"
-  },
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",

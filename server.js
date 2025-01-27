@@ -1,8 +1,8 @@
 require('dotenv').config();
 const express = require('express');
-const mongoose = require('mongoose');
 const cors = require('cors');
 const path = require('path');
+const { connectDB } = require('./config/db');
 
 const app = express();
 
@@ -11,18 +11,13 @@ app.use(cors());
 app.use(express.json());
 app.use(express.static('public'));
 
-// Conexão com MongoDB
-mongoose.connect(process.env.MONGODB_URI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-})
-.then(() => console.log('Conectado ao MongoDB'))
-.catch(err => console.error('Erro ao conectar ao MongoDB:', err));
+// Conectar ao banco de dados
+connectDB()
+  .then(() => console.log('Conectado ao PostgreSQL'))
+  .catch(err => console.error('Erro ao conectar ao PostgreSQL:', err));
 
 // Rotas da API
 app.use('/api/auth', require('./routes/auth'));
-app.use('/api/users', require('./routes/users'));
-app.use('/api/calculations', require('./routes/calculations'));
 
 // Servir arquivos estáticos em produção
 if (process.env.NODE_ENV === 'production') {

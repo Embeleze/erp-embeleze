@@ -119,7 +119,7 @@ const Vendas = () => {
         </div>
         <div className="marketplace-card mercadolivre">
           <div className="card-logo">
-            <img src="https://http2.mlstatic.com/frontend-assets/ml-web-navigation/ui-navigation/5.21.3/mercadolibre/logo__large_plus.png" alt="Mercado Livre Logo" />
+            <img src="https://logodownload.org/wp-content/uploads/2016/10/mercado-livre-logo-1.png" alt="Mercado Livre Logo" />
           </div>
           <div className="card-content">
             <h3>Mercado Livre</h3>

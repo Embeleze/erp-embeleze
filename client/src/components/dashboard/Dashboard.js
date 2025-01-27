@@ -1,9 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Dashboard.css';
 
 const Dashboard = () => {
   const navigate = useNavigate();
+  const [currentModule, setCurrentModule] = useState('dashboard');
+
+  const navigateToModule = (module) => {
+    setCurrentModule(module);
+    // Aqui você pode adicionar lógica específica para cada módulo
+    if (module === 'vendas') {
+      // Lógica específica para vendas
+    }
+  };
 
   const logout = () => {
     localStorage.removeItem('token');
@@ -54,9 +63,10 @@ const Dashboard = () => {
             <span>Bem-vindo(a)</span>
           </div>
         </header>
-        <div className="dashboard" id="dashboard">
-          <h2>Dashboard</h2>
-          <p>Selecione um módulo para começar</p>
+        <div className="dashboard">
+          <h2>{currentModule.charAt(0).toUpperCase() + currentModule.slice(1)}</h2>
+          {currentModule === 'dashboard' && <p>Selecione um módulo para começar</p>}
+          {currentModule !== 'dashboard' && <p>Módulo {currentModule} em desenvolvimento...</p>}
         </div>
       </main>
     </div>

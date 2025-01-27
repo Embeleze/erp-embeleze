@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './Vendas.css';
 
 const Vendas = () => {
+  const navigate = useNavigate();
   const [currentView, setCurrentView] = useState('marketplace');
   const [calculatorMode, setCalculatorMode] = useState('preco');
   const [formData, setFormData] = useState({
@@ -64,6 +66,11 @@ const Vendas = () => {
       lucroDesejado
     } = formData;
 
+    if (!custoProduto) {
+      alert('Por favor, preencha o custo do produto');
+      return;
+    }
+
     const custoTotalProduto = parseFloat(custoProduto) * parseInt(quantidade);
     let precoFinal = 0;
     let lucroBruto = 0;
@@ -79,6 +86,9 @@ const Vendas = () => {
       const custoTotal = custoTotalProduto + parseFloat(taxaFixa) + parseFloat(custoPedido || 0);
       const descontos = precoFinal * ((parseFloat(comissaoShopee) + parseFloat(imposto || 0)) / 100);
       lucroBruto = precoFinal - custoTotal - descontos;
+    } else {
+      alert('Por favor, preencha todos os campos necessários');
+      return;
     }
 
     const comissaoParceiroValor = lucroBruto * (parseFloat(comissaoParceiro) / 100);
@@ -94,8 +104,16 @@ const Vendas = () => {
     });
   };
 
+  const voltar = () => {
+    navigate('/dashboard');
+  };
+
   const renderMarketplaces = () => (
-    <>
+    <div className="marketplace-container">
+      <button className="back-button" onClick={voltar}>
+        <i className="fas fa-chevron-left"></i>
+        Voltar ao Dashboard
+      </button>
       <div className="marketplace-cards">
         <div className="marketplace-card shopee" onClick={() => setCurrentView('calculator')}>
           <div className="card-logo">
@@ -116,14 +134,14 @@ const Vendas = () => {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 
   const renderCalculator = () => (
-    <>
+    <div className="calculator-container">
       <button className="back-button" onClick={() => setCurrentView('marketplace')}>
         <i className="fas fa-chevron-left"></i>
-        Voltar
+        Voltar aos Marketplaces
       </button>
       <div className="marketplace-header">
         <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Shopee_logo.svg/2560px-Shopee_logo.svg.png" alt="Shopee Logo" className="marketplace-page-logo" />
@@ -156,6 +174,7 @@ const Vendas = () => {
               value={formData.custoProduto}
               onChange={handleInputChange}
               step="0.01"
+              min="0"
             />
           </div>
           <div className="input-group">
@@ -176,6 +195,7 @@ const Vendas = () => {
               value={formData.comissaoShopee}
               onChange={handleInputChange}
               step="0.01"
+              min="0"
             />
           </div>
           <div className="input-group">
@@ -186,6 +206,7 @@ const Vendas = () => {
               value={formData.comissaoParceiro}
               onChange={handleInputChange}
               step="0.01"
+              min="0"
             />
           </div>
           <div className="input-group">
@@ -196,6 +217,7 @@ const Vendas = () => {
               value={formData.imposto}
               onChange={handleInputChange}
               step="0.01"
+              min="0"
             />
           </div>
           <div className="input-group">
@@ -206,6 +228,7 @@ const Vendas = () => {
               value={formData.taxaFixa}
               onChange={handleInputChange}
               step="0.01"
+              min="0"
             />
           </div>
           <div className="input-group">
@@ -216,6 +239,7 @@ const Vendas = () => {
               value={formData.custoPedido}
               onChange={handleInputChange}
               step="0.01"
+              min="0"
             />
           </div>
           <div className="input-group">
@@ -228,48 +252,53 @@ const Vendas = () => {
               value={calculatorMode === 'preco' ? formData.precoVenda : formData.lucroDesejado}
               onChange={handleInputChange}
               step="0.01"
+              min="0"
             />
           </div>
         </div>
-        <button className="action-btn precificar calc-button" onClick={calcular}>
-          <i className="fas fa-calculator"></i>
-          Calcular
-        </button>
-        <button className="action-btn limpar clear-button" onClick={limpar}>
-          <i className="fas fa-eraser"></i>
-          Limpar Campos
-        </button>
-        <div className="calc-results">
-          <div className="result-card">
-            <h3>Resultado</h3>
-            <div className="result-item">
-              <span>Preço Final:</span>
-              <strong>R$ {resultado.precoFinal.toFixed(2)}</strong>
-            </div>
-            <div className="result-item">
-              <span>Lucro Bruto:</span>
-              <strong>R$ {resultado.lucroBruto.toFixed(2)}</strong>
-            </div>
-            <div className="result-item">
-              <span>Comissão Parceiro:</span>
-              <strong>R$ {resultado.comissaoParceiroValor.toFixed(2)}</strong>
-            </div>
-            <div className="result-item">
-              <span>Lucro Líquido:</span>
-              <strong>R$ {resultado.lucroFinal.toFixed(2)}</strong>
-            </div>
-            <div className="result-item">
-              <span>Margem:</span>
-              <strong>{resultado.margemFinal.toFixed(2)}%</strong>
+        <div className="calc-buttons">
+          <button className="action-btn precificar calc-button" onClick={calcular}>
+            <i className="fas fa-calculator"></i>
+            Calcular
+          </button>
+          <button className="action-btn limpar clear-button" onClick={limpar}>
+            <i className="fas fa-eraser"></i>
+            Limpar Campos
+          </button>
+        </div>
+        {(resultado.precoFinal > 0 || resultado.lucroBruto > 0) && (
+          <div className="calc-results">
+            <div className="result-card">
+              <h3>Resultado</h3>
+              <div className="result-item">
+                <span>Preço Final:</span>
+                <strong>R$ {resultado.precoFinal.toFixed(2)}</strong>
+              </div>
+              <div className="result-item">
+                <span>Lucro Bruto:</span>
+                <strong>R$ {resultado.lucroBruto.toFixed(2)}</strong>
+              </div>
+              <div className="result-item">
+                <span>Comissão Parceiro:</span>
+                <strong>R$ {resultado.comissaoParceiroValor.toFixed(2)}</strong>
+              </div>
+              <div className="result-item">
+                <span>Lucro Líquido:</span>
+                <strong>R$ {resultado.lucroFinal.toFixed(2)}</strong>
+              </div>
+              <div className="result-item">
+                <span>Margem:</span>
+                <strong>{resultado.margemFinal.toFixed(2)}%</strong>
+              </div>
             </div>
           </div>
-        </div>
+        )}
       </div>
-    </>
+    </div>
   );
 
   return (
-    <div>
+    <div className="vendas-container">
       {currentView === 'marketplace' ? renderMarketplaces() : renderCalculator()}
     </div>
   );

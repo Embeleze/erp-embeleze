@@ -108,7 +108,7 @@ const Vendas = () => {
     <div className="marketplace-container">
       <h2>Vendas</h2>
       <div className="marketplace-cards">
-        <div className="marketplace-card shopee" onClick={() => setCurrentView('calculator')}>
+        <div className="marketplace-card shopee" onClick={() => setCurrentView('shopee')}>
           <div className="card-logo">
             <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Shopee_logo.svg/2560px-Shopee_logo.svg.png" alt="Shopee Logo" />
           </div>
@@ -130,9 +130,29 @@ const Vendas = () => {
     </div>
   );
 
+  const renderShopeeMenu = () => (
+    <div className="marketplace-container">
+      <button className="back-link" onClick={() => setCurrentView('marketplace')}>
+        <i className="fas fa-chevron-left"></i>
+        Voltar
+      </button>
+      <div className="shopee-welcome">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Shopee_logo.svg/2560px-Shopee_logo.svg.png" alt="Shopee Logo" className="shopee-logo" />
+        <div className="welcome-text">
+          <h2>Bem-vindo(a), Usuário</h2>
+          <p>Gerencie suas vendas na Shopee</p>
+        </div>
+      </div>
+      <button className="btn-precificar" onClick={() => setCurrentView('calculator')}>
+        <i className="fas fa-tags"></i>
+        Precificar Shopee
+      </button>
+    </div>
+  );
+
   const renderCalculator = () => (
     <div className="calculator-container">
-      <button className="back-link" onClick={() => setCurrentView('marketplace')}>
+      <button className="back-link" onClick={() => setCurrentView('shopee')}>
         <i className="fas fa-chevron-left"></i>
         Voltar
       </button>
@@ -287,7 +307,9 @@ const Vendas = () => {
 
   return (
     <div className="vendas-container">
-      {currentView === 'marketplace' ? renderMarketplaces() : renderCalculator()}
+      {currentView === 'marketplace' && renderMarketplaces()}
+      {currentView === 'shopee' && renderShopeeMenu()}
+      {currentView === 'calculator' && renderCalculator()}
     </div>
   );
 };

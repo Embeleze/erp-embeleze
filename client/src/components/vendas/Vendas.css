@@ -7,6 +7,10 @@
 .marketplace-container {
   max-width: 1200px;
   margin: 0 auto;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  padding: 2rem;
 }
 
 .marketplace-container h2 {
@@ -24,30 +28,29 @@
 .marketplace-card {
   background: white;
   border-radius: 8px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
   padding: 2rem;
   cursor: pointer;
   transition: all 0.3s ease;
-  border: 1px solid #e2e8f0;
-}
-
-.marketplace-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  text-align: center;
 }
 
 .marketplace-card.shopee {
-  border: 1px solid #ee4d2d;
+  border: 2px solid #ee4d2d;
 }
 
 .marketplace-card.mercadolivre {
-  border: 1px solid #fff159;
+  border: 2px solid #fff159;
+}
+
+.marketplace-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .card-logo {
-  width: 150px;
-  height: 50px;
-  margin-bottom: 1rem;
+  width: 200px;
+  height: 60px;
+  margin: 0 auto 1.5rem;
 }
 
 .card-logo img {
@@ -124,11 +127,15 @@
   display: flex;
   gap: 1rem;
   margin-bottom: 2rem;
+  background: #f1f5f9;
+  padding: 0.5rem;
+  border-radius: 8px;
 }
 
 .tab {
+  flex: 1;
   padding: 0.75rem 1.5rem;
-  background: #f1f5f9;
+  background: transparent;
   border: none;
   border-radius: 6px;
   color: #64748b;
@@ -138,7 +145,7 @@
 }
 
 .tab:hover {
-  background: #e2e8f0;
+  background: rgba(255, 255, 255, 0.5);
 }
 
 .tab.active {
@@ -154,7 +161,7 @@
 
 .form-row {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(3, 1fr);
   gap: 1.5rem;
 }
 
@@ -175,6 +182,7 @@
   border-radius: 6px;
   font-size: 0.875rem;
   transition: all 0.3s ease;
+  background: #f8fafc;
 }
 
 .form-group input:focus {
@@ -196,10 +204,11 @@
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  padding: 0.75rem;
+  padding: 0.875rem;
   border: none;
   border-radius: 6px;
   font-size: 0.875rem;
+  font-weight: 500;
   cursor: pointer;
   transition: all 0.3s ease;
 }
@@ -216,6 +225,7 @@
 .btn-limpar {
   background: #f1f5f9;
   color: #64748b;
+  border: 1px solid #e2e8f0;
 }
 
 .btn-limpar:hover {
@@ -257,6 +267,7 @@
 .resultado-item strong {
   color: #1e293b;
   font-size: 1rem;
+  font-weight: 600;
 }
 
 @media (max-width: 768px) {
@@ -281,4 +292,61 @@
   .calculator-actions {
     flex-direction: column;
   }
+
+  .marketplace-cards {
+    grid-template-columns: 1fr;
+  }
+}
+
+.shopee-welcome {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.shopee-logo {
+  height: 50px;
+  width: auto;
+}
+
+.welcome-text h2 {
+  font-size: 1.5rem;
+  color: #1e293b;
+  margin-bottom: 0.5rem;
+}
+
+.welcome-text p {
+  color: #64748b;
+  font-size: 0.875rem;
+}
+
+.btn-precificar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  background: #ee4d2d;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 1rem 2rem;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: 100%;
+  max-width: 300px;
+  margin: 0 auto;
+}
+
+.btn-precificar:hover {
+  background: #d23f1d;
+  transform: translateY(-2px);
+}
+
+.btn-precificar i {
+  font-size: 1.2rem;
 } 

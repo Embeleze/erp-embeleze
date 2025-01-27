@@ -8,66 +8,61 @@
   max-width: 1200px;
   margin: 0 auto;
   background: white;
-  border-radius: 8px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   padding: 2rem;
 }
 
 .marketplace-container h2 {
-  font-size: 1.5rem;
+  font-size: 1.75rem;
   color: #1e293b;
   margin-bottom: 2rem;
+  font-weight: 600;
 }
 
 .marketplace-cards {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 2rem;
+  padding: 1rem;
 }
 
 .marketplace-card {
   background: white;
-  border-radius: 8px;
+  border-radius: 12px;
   padding: 2rem;
   cursor: pointer;
   transition: all 0.3s ease;
   text-align: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  border: 3px solid transparent;
 }
 
 .marketplace-card.shopee {
-  border: 2px solid #ee4d2d;
+  border-color: #ee4d2d;
 }
 
 .marketplace-card.mercadolivre {
-  border: 2px solid #fff159;
+  border-color: #fff159;
 }
 
 .marketplace-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transform: translateY(-8px);
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
 }
 
-.card-logo {
-  width: 200px;
+.marketplace-logo {
+  width: 180px;
   height: 60px;
   margin: 0 auto 1.5rem;
-}
-
-.card-logo img {
-  width: 100%;
-  height: 100%;
   object-fit: contain;
 }
 
-.card-content h3 {
-  font-size: 1.25rem;
+.marketplace-card h3 {
+  font-size: 1.5rem;
   color: #1e293b;
-  margin-bottom: 0.5rem;
-}
-
-.card-content p {
-  color: #64748b;
-  font-size: 0.875rem;
+  margin: 1rem 0;
+  font-weight: 600;
 }
 
 /* Calculator Styles */
@@ -75,27 +70,9 @@
   max-width: 1200px;
   margin: 0 auto;
   background: white;
-  border-radius: 8px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   padding: 2rem;
-}
-
-.back-link {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  color: #64748b;
-  font-size: 0.875rem;
-  text-decoration: none;
-  margin-bottom: 2rem;
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 0;
-}
-
-.back-link:hover {
-  color: #1e293b;
 }
 
 .calculator-header {
@@ -103,133 +80,165 @@
   align-items: center;
   gap: 2rem;
   margin-bottom: 2rem;
-  padding-bottom: 1rem;
-  border-bottom: 1px solid #e2e8f0;
+  padding-bottom: 1.5rem;
+  border-bottom: 2px solid #e2e8f0;
 }
 
-.marketplace-logo {
-  height: 40px;
-  width: auto;
-}
-
-.header-text h2 {
-  font-size: 1.5rem;
-  color: #1e293b;
-  margin-bottom: 0.5rem;
-}
-
-.header-text p {
+.btn-voltar {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
   color: #64748b;
-  font-size: 0.875rem;
+  font-size: 1rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+}
+
+.btn-voltar:hover {
+  background: #f1f5f9;
+  color: #1e293b;
+}
+
+.calculator-header h2 {
+  font-size: 1.75rem;
+  color: #1e293b;
+  font-weight: 600;
+  margin: 0;
 }
 
 .calculator-tabs {
   display: flex;
   margin-bottom: 2rem;
+  background: #f8fafc;
+  border-radius: 8px;
+  padding: 0.5rem;
 }
 
 .tab {
-  padding: 0.75rem 1.5rem;
-  background: #f8fafc;
+  flex: 1;
+  padding: 1rem 2rem;
+  background: transparent;
   border: none;
   color: #64748b;
-  font-size: 0.875rem;
+  font-size: 1rem;
   cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.tab:first-child {
-  border-right: 1px solid #e2e8f0;
+  transition: all 0.3s ease;
+  border-radius: 6px;
 }
 
 .tab.active {
   background: #ee4d2d;
   color: white;
+  font-weight: 500;
 }
 
 .calculator-form {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 2rem;
 }
 
 .form-row {
   display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  gap: 1rem;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
 }
 
 .form-group {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 0.75rem;
 }
 
 .form-group label {
-  font-size: 0.75rem;
+  font-size: 0.875rem;
   color: #64748b;
+  font-weight: 500;
 }
 
 .form-group input {
-  padding: 0.5rem;
-  border: 1px solid #e2e8f0;
-  border-radius: 4px;
-  font-size: 0.875rem;
-  background: white;
+  padding: 0.75rem;
+  border: 2px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: 1rem;
+  background: #f8fafc;
+  transition: all 0.3s ease;
 }
 
 .form-group input:focus {
   outline: none;
   border-color: #ee4d2d;
+  box-shadow: 0 0 0 3px rgba(238, 77, 45, 0.1);
 }
 
 .calculator-actions {
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  gap: 1rem;
   margin-top: 2rem;
 }
 
 .btn-calcular {
-  width: 100%;
-  padding: 0.75rem;
+  flex: 1;
+  padding: 1rem 2rem;
   background: #ee4d2d;
   color: white;
   border: none;
-  border-radius: 4px;
-  font-size: 0.875rem;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 500;
   cursor: pointer;
-  margin-bottom: 1rem;
+  transition: all 0.3s ease;
+  text-align: center;
+}
+
+.btn-calcular:hover {
+  background: #d23f1d;
+  transform: translateY(-2px);
 }
 
 .btn-limpar {
+  padding: 1rem 2rem;
   background: none;
-  border: none;
+  border: 2px solid #e2e8f0;
+  border-radius: 8px;
   color: #64748b;
-  font-size: 0.75rem;
+  font-size: 1rem;
+  font-weight: 500;
   cursor: pointer;
-  text-decoration: underline;
+  transition: all 0.3s ease;
+}
+
+.btn-limpar:hover {
+  background: #f8fafc;
+  border-color: #cbd5e1;
+  color: #475569;
 }
 
 .resultado {
   margin-top: 2rem;
-  padding: 1.5rem;
-  background: #fff;
-  border: 1px solid #ee4d2d;
-  border-radius: 4px;
+  padding: 2rem;
+  background: #f8fafc;
+  border-radius: 12px;
+  border: 2px solid #e2e8f0;
 }
 
 .resultado h3 {
-  font-size: 1rem;
+  font-size: 1.25rem;
   color: #1e293b;
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
+  font-weight: 600;
+  text-align: center;
 }
 
 .resultado-item {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0.5rem 0;
+  padding: 1rem 0;
   border-bottom: 1px solid #e2e8f0;
 }
 
@@ -239,12 +248,61 @@
 
 .resultado-item span {
   color: #64748b;
-  font-size: 0.875rem;
+  font-size: 1rem;
 }
 
 .resultado-item strong {
-  color: #ee4d2d;
-  font-size: 0.875rem;
+  color: #1e293b;
+  font-size: 1.125rem;
+  font-weight: 600;
+}
+
+/* Shopee Welcome */
+.shopee-welcome {
+  max-width: 1200px;
+  margin: 0 auto;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 3rem;
+  text-align: center;
+}
+
+.welcome-text {
+  margin-bottom: 2rem;
+}
+
+.welcome-text h2 {
+  font-size: 2rem;
+  color: #1e293b;
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+.welcome-text p {
+  color: #64748b;
+  font-size: 1.125rem;
+}
+
+.btn-precificar {
+  background: #ee4d2d;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 1rem 2rem;
+  font-size: 1.125rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin: 0 auto;
+  display: block;
+  width: fit-content;
+}
+
+.btn-precificar:hover {
+  background: #d23f1d;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 @media (max-width: 768px) {
@@ -252,14 +310,8 @@
     padding: 1rem;
   }
 
-  .calculator-container {
-    padding: 1rem;
-  }
-
-  .calculator-header {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 1rem;
+  .marketplace-cards {
+    grid-template-columns: 1fr;
   }
 
   .form-row {
@@ -270,59 +322,8 @@
     flex-direction: column;
   }
 
-  .marketplace-cards {
-    grid-template-columns: 1fr;
+  .btn-calcular,
+  .btn-limpar {
+    width: 100%;
   }
-}
-
-.shopee-welcome {
-  display: flex;
-  align-items: center;
-  gap: 2rem;
-  margin-bottom: 2rem;
-  padding-bottom: 2rem;
-  border-bottom: 1px solid #e2e8f0;
-}
-
-.shopee-logo {
-  height: 50px;
-  width: auto;
-}
-
-.welcome-text h2 {
-  font-size: 1.5rem;
-  color: #1e293b;
-  margin-bottom: 0.5rem;
-}
-
-.welcome-text p {
-  color: #64748b;
-  font-size: 0.875rem;
-}
-
-.btn-precificar {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  gap: 0.75rem;
-  background: #ee4d2d;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  padding: 1rem 2rem;
-  font-size: 1rem;
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  width: fit-content;
-  margin: 0;
-}
-
-.btn-precificar:hover {
-  background: #d23f1d;
-  transform: translateY(-2px);
-}
-
-.btn-precificar i {
-  font-size: 1.2rem;
 } 

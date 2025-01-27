@@ -2,20 +2,21 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import './Dashboard.css';
 
-const Dashboard = () => {
+const Dashboard = ({ setAuth }) => {
   const navigate = useNavigate();
   const [currentModule, setCurrentModule] = useState('dashboard');
 
   const navigateToModule = (module) => {
-    setCurrentModule(module);
-    // Aqui você pode adicionar lógica específica para cada módulo
     if (module === 'vendas') {
-      // Lógica específica para vendas
+      navigate('/vendas');
+    } else {
+      setCurrentModule(module);
     }
   };
 
   const logout = () => {
     localStorage.removeItem('token');
+    setAuth(false);
     navigate('/login');
   };
 
@@ -66,7 +67,9 @@ const Dashboard = () => {
         <div className="dashboard">
           <h2>{currentModule.charAt(0).toUpperCase() + currentModule.slice(1)}</h2>
           {currentModule === 'dashboard' && <p>Selecione um módulo para começar</p>}
-          {currentModule !== 'dashboard' && <p>Módulo {currentModule} em desenvolvimento...</p>}
+          {currentModule !== 'dashboard' && currentModule !== 'vendas' && (
+            <p>Módulo {currentModule} em desenvolvimento...</p>
+          )}
         </div>
       </main>
     </div>

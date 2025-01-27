@@ -126,7 +126,7 @@ const Vendas = () => {
           <i className="fas fa-home"></i>
           <span>Dashboard</span>
         </button>
-        <button className="menu-btn active" onClick={() => navigateToModule('vendas')}>
+        <button className="menu-btn active">
           <i className="fas fa-shopping-cart"></i>
           <span>Vendas</span>
         </button>
@@ -172,11 +172,11 @@ const Vendas = () => {
       <h2>Selecione o Marketplace</h2>
       <div className="marketplace-cards">
         <div className="marketplace-card shopee" onClick={() => setCurrentView('shopee')}>
-          <img src="/shopee-logo.png" alt="Shopee" className="marketplace-logo" />
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Shopee_logo.svg/2560px-Shopee_logo.svg.png" alt="Shopee" className="marketplace-logo" />
           <h3>Shopee</h3>
         </div>
         <div className="marketplace-card mercadolivre" onClick={() => setCurrentView('mercadolivre')}>
-          <img src="/mercadolivre-logo.png" alt="Mercado Livre" className="marketplace-logo" />
+          <img src="https://http2.mlstatic.com/frontend-assets/ml-web-navigation/ui-navigation/5.21.3/mercadolibre/logo__large_plus.png" alt="Mercado Livre" className="marketplace-logo" />
           <h3>Mercado Livre</h3>
         </div>
       </div>
@@ -185,7 +185,7 @@ const Vendas = () => {
 
   const renderShopeeMenu = () => (
     <div className="shopee-welcome">
-      <img src="/shopee-logo.png" alt="Shopee" className="shopee-logo" />
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Shopee_logo.svg/2560px-Shopee_logo.svg.png" alt="Shopee" className="shopee-logo" />
       <div className="welcome-text">
         <h2>Bem-vindo à Shopee</h2>
         <p>Escolha uma opção para continuar</p>

@@ -21,19 +21,17 @@ router.post('/register', [
     const { name, email, password } = req.body;
 
     try {
-        let user = await User.findOne({ email });
+        let user = await User.findOne({ where: { email } });
 
         if (user) {
             return res.status(400).json({ msg: 'Usuário já existe' });
         }
 
-        user = new User({
+        user = await User.create({
             name,
             email,
             password
         });
-
-        await user.save();
 
         const payload = {
             user: {
@@ -51,8 +49,8 @@ router.post('/register', [
             }
         );
     } catch (err) {
-        console.error(err.message);
-        res.status(500).send('Erro no servidor');
+        console.error('Erro ao registrar:', err);
+        res.status(500).json({ msg: 'Erro no servidor ao registrar usuário' });
     }
 });
 
@@ -71,16 +69,18 @@ router.post('/login', [
     const { email, password } = req.body;
 
     try {
-        let user = await User.findOne({ email });
+        let user = await User.findOne({ where: { email } });
 
         if (!user) {
-            return res.status(400).json({ msg: 'Credenciais inválidas' });
+            console.log('Usuário não encontrado:', email);
+            return res.status(401).json({ msg: 'Credenciais inválidas' });
         }
 
         const isMatch = await user.matchPassword(password);
 
         if (!isMatch) {
-            return res.status(400).json({ msg: 'Credenciais inválidas' });
+            console.log('Senha incorreta para usuário:', email);
+            return res.status(401).json({ msg: 'Credenciais inválidas' });
         }
 
         // Atualiza último login
@@ -98,13 +98,16 @@ router.post('/login', [
             process.env.JWT_SECRET,
             { expiresIn: '24h' },
             (err, token) => {
-                if (err) throw err;
+                if (err) {
+                    console.error('Erro ao gerar token:', err);
+                    throw err;
+                }
                 res.json({ token });
             }
         );
     } catch (err) {
-        console.error(err.message);
-        res.status(500).send('Erro no servidor');
+        console.error('Erro ao fazer login:', err);
+        res.status(500).json({ msg: 'Erro no servidor ao fazer login' });
     }
 });
 
@@ -113,11 +116,13 @@ router.post('/login', [
 // @access  Private
 router.get('/user', auth, async (req, res) => {
     try {
-        const user = await User.findById(req.user.id).select('-password');
+        const user = await User.findByPk(req.user.id, {
+            attributes: { exclude: ['password'] }
+        });
         res.json(user);
     } catch (err) {
-        console.error(err.message);
-        res.status(500).send('Erro no servidor');
+        console.error('Erro ao obter usuário:', err);
+        res.status(500).json({ msg: 'Erro no servidor ao obter usuário' });
     }
 });
 

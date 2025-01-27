@@ -9,7 +9,6 @@ const app = express();
 // Middleware
 app.use(cors());
 app.use(express.json());
-app.use(express.static('public'));
 
 // Conectar ao banco de dados
 connectDB()
@@ -19,12 +18,15 @@ connectDB()
 // Rotas da API
 app.use('/api/auth', require('./routes/auth'));
 
-// Servir arquivos estáticos em produção
+// Servir arquivos estáticos do React em produção
 if (process.env.NODE_ENV === 'production') {
-    app.use(express.static('client/build'));
-    app.get('*', (req, res) => {
-        res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
-    });
+  // Servir arquivos estáticos da pasta build
+  app.use(express.static(path.join(__dirname, 'client/build')));
+
+  // Qualquer rota não reconhecida, enviar o index.html
+  app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'client/build/index.html'));
+  });
 }
 
 const PORT = process.env.PORT || 5000;

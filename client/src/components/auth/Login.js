@@ -9,21 +9,43 @@ const Login = ({ setAuth }) => {
     password: ''
   });
   const [error, setError] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const { email, password } = formData;
 
   const onChange = e => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
+    setError(''); // Limpa o erro quando o usuário começa a digitar
+  };
+
+  const toggleShowPassword = () => {
+    setShowPassword(!showPassword);
   };
 
   const onSubmit = async e => {
     e.preventDefault();
+    setIsLoading(true);
+    setError('');
+
     try {
-      const res = await axios.post('/api/auth/login', formData);
+      console.log('Tentando login com:', formData);
+      const res = await axios.post('https://erp-embeleze-app.onrender.com/api/auth/login', formData);
+      console.log('Resposta do servidor:', res.data);
       localStorage.setItem('token', res.data.token);
       setAuth(true);
     } catch (err) {
-      setError(err.response.data.msg || 'Erro ao fazer login');
+      console.error('Erro completo:', err);
+      if (err.response) {
+        console.log('Resposta de erro:', err.response.data);
+        setError(err.response.data.msg || 'Credenciais inválidas. Verifique seu email e senha.');
+      } else if (err.request) {
+        setError('Erro de conexão com o servidor. Tente novamente.');
+      } else {
+        setError('Erro ao fazer login. Tente novamente.');
+      }
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -42,20 +64,33 @@ const Login = ({ setAuth }) => {
               value={email}
               onChange={onChange}
               required
+              className={error ? 'error' : ''}
             />
           </div>
-          <div className="form-group">
+          <div className="form-group password-group">
             <input
-              type="password"
+              type={showPassword ? "text" : "password"}
               placeholder="Senha"
               name="password"
               value={password}
               onChange={onChange}
               required
+              className={error ? 'error' : ''}
             />
+            <button 
+              type="button" 
+              className="toggle-password"
+              onClick={toggleShowPassword}
+            >
+              <i className={`fas ${showPassword ? 'fa-eye-slash' : 'fa-eye'}`}></i>
+            </button>
           </div>
-          <button type="submit" className="btn btn-primary">
-            Entrar
+          <button 
+            type="submit" 
+            className="btn btn-primary"
+            disabled={isLoading}
+          >
+            {isLoading ? 'Entrando...' : 'Entrar'}
           </button>
         </form>
         <p>

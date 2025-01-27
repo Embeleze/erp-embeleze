@@ -10,7 +10,7 @@ const initDB = async () => {
         // Criar usuário admin
         await User.create({
             name: 'Administrador',
-            email: 'admin@erp.com',
+            email: 'admin@erpembeleze.com',
             password: 'admin123',
             role: 'admin'
         });
@@ -18,7 +18,7 @@ const initDB = async () => {
         // Criar usuário de teste
         await User.create({
             name: 'Usuário Teste',
-            email: 'teste@erp.com',
+            email: 'teste@erpembeleze.com',
             password: 'teste123',
             role: 'user'
         });

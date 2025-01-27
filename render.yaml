@@ -2,7 +2,9 @@ services:
   - type: web
     name: erp-embeleze
     env: node
-    buildCommand: npm install && npm run build
+    buildCommand: |
+      npm install
+      cd client && npm install && npm run build && cd ..
     startCommand: node server.js
     envVars:
       - key: DATABASE_URL
@@ -13,8 +15,8 @@ services:
         value: erp-embeleze-secret-key-2024-production
       - key: NODE_ENV
         value: production
-      - key: CORS_ORIGIN
-        value: https://erp-embeleze.netlify.app
+      - key: PORT
+        value: 5000
     buildFilter:
       paths:
       - server.js

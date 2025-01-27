@@ -28,13 +28,7 @@ const User = sequelize.define('User', {
     }
 }, {
     hooks: {
-        beforeCreate: async (user) => {
-            if (user.password) {
-                const salt = await bcrypt.genSalt(10);
-                user.password = await bcrypt.hash(user.password, salt);
-            }
-        },
-        beforeUpdate: async (user) => {
+        beforeSave: async (user) => {
             if (user.changed('password')) {
                 const salt = await bcrypt.genSalt(10);
                 user.password = await bcrypt.hash(user.password, salt);
@@ -45,7 +39,12 @@ const User = sequelize.define('User', {
 
 // Método para verificar senha
 User.prototype.matchPassword = async function(enteredPassword) {
-    return await bcrypt.compare(enteredPassword, this.password);
+    try {
+        return await bcrypt.compare(enteredPassword, this.password);
+    } catch (error) {
+        console.error('Erro ao comparar senhas:', error);
+        return false;
+    }
 };
 
 module.exports = User; 

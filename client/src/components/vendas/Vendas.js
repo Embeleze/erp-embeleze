@@ -104,6 +104,64 @@ const Vendas = () => {
     });
   };
 
+  const logout = () => {
+    localStorage.removeItem('token');
+    navigate('/login');
+  };
+
+  const navigateToModule = (module) => {
+    if (module === 'dashboard') {
+      navigate('/dashboard');
+    }
+  };
+
+  const renderSidebar = () => (
+    <div className="sidebar">
+      <div className="logo">
+        <h1>ERP Embeleze</h1>
+      </div>
+      <nav className="menu">
+        <button className="menu-btn" onClick={() => navigateToModule('vendas')}>
+          <i className="fas fa-shopping-cart"></i>
+          <span>Vendas</span>
+        </button>
+        <button className="menu-btn" onClick={() => navigateToModule('compras')}>
+          <i className="fas fa-shopping-bag"></i>
+          <span>Compras</span>
+        </button>
+        <button className="menu-btn" onClick={() => navigateToModule('estoque')}>
+          <i className="fas fa-warehouse"></i>
+          <span>Estoque</span>
+        </button>
+        <button className="menu-btn" onClick={() => navigateToModule('producao')}>
+          <i className="fas fa-industry"></i>
+          <span>Produção</span>
+        </button>
+        <button className="menu-btn" onClick={() => navigateToModule('financeiro')}>
+          <i className="fas fa-dollar-sign"></i>
+          <span>Financeiro</span>
+        </button>
+        <button className="menu-btn" onClick={() => navigateToModule('contabilidade')}>
+          <i className="fas fa-calculator"></i>
+          <span>Contabilidade</span>
+        </button>
+        <button className="menu-btn logout" onClick={logout}>
+          <i className="fas fa-sign-out-alt"></i>
+          <span>Sair</span>
+        </button>
+      </nav>
+    </div>
+  );
+
+  const renderHeader = () => (
+    <header>
+      <div className="user-info">
+        <i className="fas fa-user-circle"></i>
+        <span>Bem-vindo(a)</span>
+      </div>
+    </header>
+  );
+
   const renderMarketplace = () => (
     <div className="marketplace-container">
       <h2>Vendas</h2>
@@ -119,7 +177,7 @@ const Vendas = () => {
         </div>
         <div className="marketplace-card mercadolivre">
           <div className="card-logo">
-            <img src="https://logodownload.org/wp-content/uploads/2016/10/mercado-livre-logo-1.png" alt="Mercado Livre Logo" />
+            <img src="https://http2.mlstatic.com/frontend-assets/ml-web-navigation/ui-navigation/5.21.3/mercadolibre/logo__large_plus.png" alt="Mercado Livre Logo" />
           </div>
           <div className="card-content">
             <h3>Mercado Livre</h3>
@@ -306,10 +364,16 @@ const Vendas = () => {
   );
 
   return (
-    <div className="vendas-container">
-      {currentView === 'marketplace' && renderMarketplace()}
-      {currentView === 'shopee' && renderShopeeMenu()}
-      {currentView === 'calculator' && renderCalculator()}
+    <div className="app-container">
+      {renderSidebar()}
+      <main className="content">
+        {renderHeader()}
+        <div className="vendas-container">
+          {currentView === 'marketplace' && renderMarketplace()}
+          {currentView === 'shopee' && renderShopeeMenu()}
+          {currentView === 'calculator' && renderCalculator()}
+        </div>
+      </main>
     </div>
   );
 };

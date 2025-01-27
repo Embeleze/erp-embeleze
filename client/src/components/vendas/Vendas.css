@@ -1,6 +1,6 @@
 .vendas-container {
   min-height: 100vh;
-  background-color: #f8fafc;
+  background-color: var(--background-color);
   padding: 2rem;
 }
 
@@ -23,26 +23,30 @@
 
 .marketplace-card {
   background: white;
-  border-radius: 10px;
+  border-radius: 12px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  padding: 1.5rem;
+  padding: 2rem;
   cursor: pointer;
-  transition: transform 0.3s ease;
+  transition: all 0.3s ease;
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 1.5rem;
 }
 
 .marketplace-card:hover {
   transform: translateY(-5px);
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
 }
 
 .card-logo {
-  width: 80px;
-  height: 80px;
+  width: 100px;
+  height: 100px;
   display: flex;
   align-items: center;
   justify-content: center;
+  background: #f8fafc;
+  border-radius: 12px;
+  padding: 1rem;
 }
 
 .card-logo img {
@@ -56,29 +60,30 @@
 
 .card-content h3 {
   margin: 0;
-  color: #333;
-  font-size: 1.25rem;
+  color: var(--text-color);
+  font-size: 1.5rem;
+  font-weight: 600;
 }
 
 .card-content p {
   margin: 0.5rem 0 0;
-  color: #666;
-  font-size: 0.9rem;
+  color: #64748b;
+  font-size: 1rem;
 }
 
 .marketplace-header {
   display: flex;
   align-items: center;
-  gap: 1rem;
-  padding: 1rem;
+  gap: 1.5rem;
+  padding: 1.5rem 2rem;
   background: white;
-  border-radius: 10px;
+  border-radius: 12px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   margin: 1rem 0 2rem;
 }
 
 .marketplace-page-logo {
-  height: 40px;
+  height: 50px;
   width: auto;
 }
 
@@ -88,34 +93,43 @@
 
 .user-welcome h2 {
   margin: 0;
-  color: #333;
+  color: var(--text-color);
+  font-size: 1.8rem;
+  font-weight: 600;
 }
 
 .user-welcome p {
-  margin: 0.25rem 0 0;
-  color: #666;
+  margin: 0.5rem 0 0;
+  color: #64748b;
+  font-size: 1.1rem;
 }
 
 .back-button {
   background: none;
   border: none;
-  color: #666;
+  color: #64748b;
   cursor: pointer;
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  padding: 0.5rem;
-  font-size: 0.9rem;
-  transition: color 0.3s ease;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
 }
 
 .back-button:hover {
-  color: #333;
+  color: var(--text-color);
+  transform: translateX(-5px);
+}
+
+.back-button i {
+  font-size: 1.2rem;
 }
 
 .calc-container {
   background: white;
-  border-radius: 10px;
+  border-radius: 12px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   padding: 2rem;
 }
@@ -128,18 +142,23 @@
 
 .calc-tab {
   flex: 1;
-  padding: 1rem;
+  padding: 1rem 1.5rem;
   border: none;
   border-radius: 8px;
-  background: #f5f5f5;
+  background: #f1f5f9;
   cursor: pointer;
-  font-size: 1rem;
-  color: #666;
+  font-size: 1.1rem;
+  color: #64748b;
+  font-weight: 500;
   transition: all 0.3s ease;
 }
 
+.calc-tab:hover {
+  background: #e2e8f0;
+}
+
 .calc-tab.active {
-  background: #3b82f6;
+  background: var(--primary-color);
   color: white;
 }
 
@@ -153,25 +172,28 @@
 .input-group {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 0.75rem;
 }
 
 .input-group label {
-  font-size: 0.9rem;
-  color: #666;
+  font-size: 1rem;
+  color: #64748b;
+  font-weight: 500;
 }
 
 .input-group input {
-  padding: 0.75rem;
-  border: 1px solid #e2e8f0;
-  border-radius: 6px;
+  padding: 0.875rem 1rem;
+  border: 2px solid #e2e8f0;
+  border-radius: 8px;
   font-size: 1rem;
-  transition: border-color 0.3s ease;
+  transition: all 0.3s ease;
+  color: var(--text-color);
 }
 
 .input-group input:focus {
   outline: none;
-  border-color: #3b82f6;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
 }
 
 .calc-buttons {
@@ -182,25 +204,33 @@
 
 .action-btn {
   flex: 1;
-  padding: 1rem;
+  padding: 1rem 1.5rem;
   border: none;
   border-radius: 8px;
-  font-size: 1rem;
+  font-size: 1.1rem;
+  font-weight: 500;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 0.5rem;
-  transition: background-color 0.3s ease;
+  gap: 0.75rem;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.action-btn i {
+  font-size: 1.2rem;
 }
 
 .calc-button {
-  background: #22c55e;
+  background: var(--primary-color);
   color: white;
 }
 
 .calc-button:hover {
-  background: #16a34a;
+  background: var(--hover-color);
+  transform: translateY(-2px);
 }
 
 .clear-button {
@@ -210,6 +240,7 @@
 
 .clear-button:hover {
   background: #dc2626;
+  transform: translateY(-2px);
 }
 
 .calc-results {
@@ -218,23 +249,25 @@
 
 .result-card {
   background: #f8fafc;
-  border-radius: 10px;
-  padding: 1.5rem;
-  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 2rem;
+  border: 2px solid #e2e8f0;
 }
 
 .result-card h3 {
-  margin: 0 0 1rem;
-  color: #333;
+  margin: 0 0 1.5rem;
+  color: var(--text-color);
   text-align: center;
-  font-size: 1.25rem;
+  font-size: 1.5rem;
+  font-weight: 600;
 }
 
 .result-item {
   display: flex;
   justify-content: space-between;
-  padding: 0.75rem 0;
-  border-bottom: 1px solid #e2e8f0;
+  align-items: center;
+  padding: 1rem 0;
+  border-bottom: 2px solid #e2e8f0;
 }
 
 .result-item:last-child {
@@ -242,11 +275,22 @@
 }
 
 .result-item span {
-  color: #666;
+  color: #64748b;
+  font-size: 1.1rem;
+  font-weight: 500;
 }
 
 .result-item strong {
-  color: #333;
+  color: var(--text-color);
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+:root {
+  --primary-color: #2563eb;
+  --hover-color: #1d4ed8;
+  --background-color: #f1f5f9;
+  --text-color: #1e293b;
 }
 
 @media (max-width: 768px) {
@@ -255,7 +299,7 @@
   }
 
   .calc-container {
-    padding: 1rem;
+    padding: 1.5rem;
   }
 
   .calc-buttons {
@@ -265,9 +309,36 @@
   .marketplace-header {
     flex-direction: column;
     text-align: center;
+    padding: 1.5rem;
   }
 
   .marketplace-page-logo {
     margin-bottom: 1rem;
+  }
+
+  .marketplace-card {
+    flex-direction: column;
+    text-align: center;
+    padding: 1.5rem;
+  }
+
+  .card-logo {
+    width: 120px;
+    height: 120px;
+    margin: 0 auto;
+  }
+
+  .calc-tab {
+    padding: 0.875rem 1rem;
+    font-size: 1rem;
+  }
+
+  .input-group input {
+    padding: 0.75rem;
+  }
+
+  .action-btn {
+    padding: 0.875rem 1rem;
+    font-size: 1rem;
   }
 } 

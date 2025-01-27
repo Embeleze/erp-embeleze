@@ -1,0 +1,32 @@
+services:
+  - type: web
+    name: erp-embeleze
+    env: node
+    buildCommand: npm install && npm run build
+    startCommand: node server.js
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: erp_embeleze_db
+          property: connectionString
+      - key: JWT_SECRET
+        value: erp-embeleze-secret-key-2024-production
+      - key: NODE_ENV
+        value: production
+      - key: CORS_ORIGIN
+        value: https://erp-embeleze.netlify.app
+    buildFilter:
+      paths:
+      - server.js
+      - package.json
+      - client/**
+      - models/**
+      - routes/**
+      - middleware/**
+      - config/**
+      - scripts/**
+
+databases:
+  - name: erp_embeleze_db
+    plan: free
+    ipAllowList: [] 

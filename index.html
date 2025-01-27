@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema ERP</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="sidebar">
+        <div class="logo">
+            <h1>ERP System</h1>
+        </div>
+        <nav class="menu">
+            <button class="menu-btn" onclick="navigateToModule('vendas')">
+                <i class="fas fa-shopping-cart"></i>
+                <span>Vendas</span>
+            </button>
+            <button class="menu-btn" onclick="navigateToModule('compras')">
+                <i class="fas fa-shopping-bag"></i>
+                <span>Compras</span>
+            </button>
+            <button class="menu-btn" onclick="navigateToModule('estoque')">
+                <i class="fas fa-warehouse"></i>
+                <span>Estoque</span>
+            </button>
+            <button class="menu-btn" onclick="navigateToModule('producao')">
+                <i class="fas fa-industry"></i>
+                <span>Produção</span>
+            </button>
+            <button class="menu-btn" onclick="navigateToModule('financeiro')">
+                <i class="fas fa-dollar-sign"></i>
+                <span>Financeiro</span>
+            </button>
+            <button class="menu-btn" onclick="navigateToModule('contabilidade')">
+                <i class="fas fa-calculator"></i>
+                <span>Contabilidade</span>
+            </button>
+        </nav>
+    </div>
+    <main class="content">
+        <header>
+            <div class="user-info">
+                <i class="fas fa-user-circle"></i>
+                <span>Bem-vindo(a)</span>
+            </div>
+        </header>
+        <div class="dashboard">
+            <h2>Dashboard</h2>
+            <p>Selecione um módulo para começar</p>
+        </div>
+    </main>
+    <script src="script.js"></script>
+</body>
+</html> 

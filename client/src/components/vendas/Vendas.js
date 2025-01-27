@@ -110,8 +110,30 @@ const Vendas = () => {
   };
 
   const navigateToModule = (module) => {
-    if (module === 'dashboard') {
-      navigate('/dashboard');
+    switch(module) {
+      case 'dashboard':
+        navigate('/dashboard');
+        break;
+      case 'vendas':
+        setCurrentView('marketplace');
+        break;
+      case 'compras':
+        navigate('/compras');
+        break;
+      case 'estoque':
+        navigate('/estoque');
+        break;
+      case 'producao':
+        navigate('/producao');
+        break;
+      case 'financeiro':
+        navigate('/financeiro');
+        break;
+      case 'contabilidade':
+        navigate('/contabilidade');
+        break;
+      default:
+        navigate('/dashboard');
     }
   };
 
@@ -121,7 +143,11 @@ const Vendas = () => {
         <h1>ERP Embeleze</h1>
       </div>
       <nav className="menu">
-        <button className="menu-btn" onClick={() => navigateToModule('vendas')}>
+        <button className="menu-btn" onClick={() => navigateToModule('dashboard')}>
+          <i className="fas fa-home"></i>
+          <span>Dashboard</span>
+        </button>
+        <button className="menu-btn active" onClick={() => navigateToModule('vendas')}>
           <i className="fas fa-shopping-cart"></i>
           <span>Vendas</span>
         </button>
